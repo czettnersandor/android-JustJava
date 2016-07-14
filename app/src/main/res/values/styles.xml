@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="CapitalLabel" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>

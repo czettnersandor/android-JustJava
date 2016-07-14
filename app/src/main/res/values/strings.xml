@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Practice 2</string>
     <string name="order_summary">Order Summary</string>
+    <string name="toppings">Toppings</string>
+    <string name="quantity">Quantity</string>
+    <string name="order">Order</string>
+    <string name="whipped_cream">Whipped cream</string>
 </resources>

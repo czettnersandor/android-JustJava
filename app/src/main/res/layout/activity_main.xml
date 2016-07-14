@@ -13,10 +13,33 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAllCaps="true"
-        android:textSize="16sp"
+        style="@style/CapitalLabel"
         android:layout_marginBottom="16dp"
-        android:text="Quantity" />
+        android:text="@string/toppings" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="24dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="@string/whipped_cream"/>
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/CapitalLabel"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/quantity" />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,8 +69,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAllCaps="true"
-        android:textSize="16sp"
+        style="@style/CapitalLabel"
         android:layout_marginBottom="16dp"
         android:text="@string/order_summary" />
     <TextView
@@ -61,6 +83,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Order"
+        android:text="@string/order"
         android:onClick="submitOrder"/>
 </LinearLayout>
