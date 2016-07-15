@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     int quantity = 2;
     int price = 5;
     boolean whippedCream = false;
+    boolean chocolate = false;
     public static final String NL = "\n";
 
     @Override
@@ -29,25 +30,53 @@ public class MainActivity extends AppCompatActivity {
         displayMessage(message);
     }
 
+    /**
+     * Increment quantity by 1
+     * @param view
+     */
     public void increment(View view) {
         quantity++;
         display(quantity);
         displayPrice(price * quantity);
     }
 
+    /**
+     * Decrement quantity by 1
+     * @param view
+     */
     public void decrement(View view) {
         quantity--;
         display(quantity);
         displayPrice(price * quantity);
     }
 
-    public void whippedClick(CheckBox view) {
-        whippedCream = view.isChecked();
+    /**
+     * Clicked on Whipped Cream checkbox
+     * @param view
+     */
+    public void whippedClick(View view) {
+        CheckBox checkbox = (CheckBox) view;
+        whippedCream = checkbox.isChecked();
     }
 
+    /**
+     * Clicked on Chocolate checkbox
+     * @param view
+     */
+    public void chocolateClick(View view) {
+        CheckBox checkbox = (CheckBox) view;
+        chocolate = checkbox.isChecked();
+    }
+
+    /**
+     * Create order summary with price
+     * @param price
+     * @return Order summary
+     */
     private String createOrderSummary(int price) {
         String summary = "Name: Kaptain Kunal" + NL;
-        summary += "Add whipped cream? " + (whippedCream?"Yes":"No");
+        summary += "Add whipped cream? " + (whippedCream?"Yes":"No") + NL;
+        summary += "Add chocolate? " + (chocolate?"Yes":"No") + NL;
         summary += "Quantity: " + quantity + NL;
         summary += "Total: " + NumberFormat.getCurrencyInstance().format(price * quantity) + NL;
         summary += "Thank You!";
