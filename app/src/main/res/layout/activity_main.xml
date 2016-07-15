@@ -16,23 +16,12 @@
         style="@style/CapitalLabel"
         android:layout_marginBottom="16dp"
         android:text="@string/toppings" />
-
-    <LinearLayout
+    <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="24dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="@string/whipped_cream"/>
-    </LinearLayout>
-
-
+        android:paddingLeft="24dp"
+        android:onClick="whippedClick"
+        android:text="@string/whipped_cream" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -65,7 +54,6 @@
             android:text="+"
             android:onClick="increment"/>
     </LinearLayout>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
