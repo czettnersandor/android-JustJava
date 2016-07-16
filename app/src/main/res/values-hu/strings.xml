@@ -8,4 +8,8 @@
     <string name="quantity">Mennyiség</string>
     <string name="toppings">Feltétek</string>
     <string name="whipped_cream">Tejszínhab</string>
+    <string name="add_chocolate">Csokoládét kér?</string>
+    <string name="add_whipped">Tejszínhabot kér?</string>
+    <string name="thank_you">Köszönjük!</string>
+    <string name="total">Összesen</string>
 </resources>

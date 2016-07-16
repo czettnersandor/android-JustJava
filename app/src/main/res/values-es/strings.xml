@@ -8,4 +8,8 @@
     <string name="quantity">Cantidad</string>
     <string name="toppings">Ingrediente</string>
     <string name="whipped_cream">Nata montada</string>
+    <string name="add_chocolate">¿Agregue el chocolate?</string>
+    <string name="add_whipped">¿Agregue el nata montada?</string>
+    <string name="thank_you">Gracias!</string>
+    <string name="total">Total</string>
 </resources>

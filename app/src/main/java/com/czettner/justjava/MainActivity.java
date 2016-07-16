@@ -118,12 +118,12 @@ public class MainActivity extends AppCompatActivity {
      * @return Order summary
      */
     private String createOrderSummary(int price, String name) {
-        String summary = "Name: " + name + NL;
-        summary += "Add whipped cream? " + (whippedCream?"Yes":"No") + NL;
-        summary += "Add chocolate? " + (chocolate?"Yes":"No") + NL;
-        summary += "Quantity: " + quantity + NL;
-        summary += "Total: " + NumberFormat.getCurrencyInstance().format(price) + NL;
-        summary += "Thank You!";
+        String summary = getString(R.string.name) + ": " + name + NL;
+        summary += getString(R.string.add_whipped) + (whippedCream?"Yes":"No") + NL;
+        summary += getString(R.string.add_whipped) + (chocolate?"Yes":"No") + NL;
+        summary += getString(R.string.quantity) + ": " + quantity + NL;
+        summary += getString(R.string.total) + ": " + NumberFormat.getCurrencyInstance().format(price) + NL;
+        summary += getString(R.string.thank_you);
         return summary;
     }
 
