@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -15,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     boolean whippedCream = false;
     boolean chocolate = false;
     public static final String NL = "\n";
+    public static final int WHIPPED_PRICE = 1;
+    public static final int CHOCOLATE_PRICE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +29,9 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        String message = createOrderSummary(price);
+        EditText nameEditText = (EditText) findViewById(R.id.edit_name);
+        String name = nameEditText.getText().toString();
+        String message = createOrderSummary(calculateOrderPrice(price), name);
         displayMessage(message);
     }
 
@@ -37,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     public void increment(View view) {
         quantity++;
         display(quantity);
-        displayPrice(price * quantity);
+        displayPrice(calculateOrderPrice(price));
     }
 
     /**
@@ -47,7 +52,19 @@ public class MainActivity extends AppCompatActivity {
     public void decrement(View view) {
         quantity--;
         display(quantity);
-        displayPrice(price * quantity);
+        displayPrice(calculateOrderPrice(price));
+    }
+
+    /**
+     * Calculate order price
+     * @param orderPrice
+     * @return
+     */
+    private int calculateOrderPrice(int orderPrice) {
+        orderPrice += (whippedCream?WHIPPED_PRICE:0);
+        orderPrice += (chocolate?CHOCOLATE_PRICE:0);
+        orderPrice = orderPrice * quantity;
+        return orderPrice;
     }
 
     /**
@@ -70,15 +87,16 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Create order summary with price
-     * @param price
+     * @param price Deal price
+     * @param name  Buyer's name
      * @return Order summary
      */
-    private String createOrderSummary(int price) {
-        String summary = "Name: Kaptain Kunal" + NL;
+    private String createOrderSummary(int price, String name) {
+        String summary = "Name: " + name + NL;
         summary += "Add whipped cream? " + (whippedCream?"Yes":"No") + NL;
         summary += "Add chocolate? " + (chocolate?"Yes":"No") + NL;
         summary += "Quantity: " + quantity + NL;
-        summary += "Total: " + NumberFormat.getCurrencyInstance().format(price * quantity) + NL;
+        summary += "Total: " + NumberFormat.getCurrencyInstance().format(price) + NL;
         summary += "Thank You!";
         return summary;
     }
