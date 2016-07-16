@@ -1,11 +1,14 @@
 package com.czettner.justjava;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 
@@ -16,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     boolean whippedCream = false;
     boolean chocolate = false;
     public static final String NL = "\n";
+    public static final int MIN_COFFEES = 1;
+    public static final int MAX_COFFEES = 100;
     public static final int WHIPPED_PRICE = 1;
     public static final int CHOCOLATE_PRICE = 2;
 
@@ -32,7 +37,16 @@ public class MainActivity extends AppCompatActivity {
         EditText nameEditText = (EditText) findViewById(R.id.edit_name);
         String name = nameEditText.getText().toString();
         String message = createOrderSummary(calculateOrderPrice(price), name);
-        displayMessage(message);
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Just Java order");
+        intent.putExtra(Intent.EXTRA_TEXT, message);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        } else {
+            Toast toast = Toast.makeText(getApplicationContext(), "Cannot start email app.", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     /**
@@ -40,6 +54,11 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void increment(View view) {
+        if (quantity >= MAX_COFFEES) {
+            Toast toast = Toast.makeText(getApplicationContext(), "You can not have more than " + MAX_COFFEES + " coffees.", Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
         quantity++;
         display(quantity);
         displayPrice(calculateOrderPrice(price));
@@ -50,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void decrement(View view) {
+        if (quantity <= MIN_COFFEES) {
+            Toast toast = Toast.makeText(getApplicationContext(), "You can not have less than " + MIN_COFFEES + " coffee.", Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
         quantity--;
         display(quantity);
         displayPrice(calculateOrderPrice(price));
@@ -57,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Calculate order price
-     * @param orderPrice
-     * @return
+     * @param orderPrice Order price
+     * @return Calculated price
      */
     private int calculateOrderPrice(int orderPrice) {
         orderPrice += (whippedCream?WHIPPED_PRICE:0);
@@ -74,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
     public void whippedClick(View view) {
         CheckBox checkbox = (CheckBox) view;
         whippedCream = checkbox.isChecked();
+        displayPrice(calculateOrderPrice(price));
     }
 
     /**
@@ -83,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
     public void chocolateClick(View view) {
         CheckBox checkbox = (CheckBox) view;
         chocolate = checkbox.isChecked();
+        displayPrice(calculateOrderPrice(price));
     }
 
     /**
@@ -116,12 +142,5 @@ public class MainActivity extends AppCompatActivity {
         TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
         orderSummaryTextView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
-
-    /**
-     * This method displays the given text on the screen.
-     */
-    private void displayMessage(String message) {
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText(message);
-    }
+    
 }
