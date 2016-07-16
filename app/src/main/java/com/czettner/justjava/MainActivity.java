@@ -142,5 +142,5 @@ public class MainActivity extends AppCompatActivity {
         TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
         orderSummaryTextView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
-    
+
 }

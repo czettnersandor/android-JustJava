@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Just Java</string>
+    <string name="chocolate">Csokoládé</string>
+    <string name="name">Név</string>
+    <string name="order">Rendelés</string>
+    <string name="order_summary">Tételek</string>
+    <string name="quantity">Mennyiség</string>
+    <string name="toppings">Feltétek</string>
+    <string name="whipped_cream">Tejszínhab</string>
+</resources>
